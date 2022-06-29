@@ -1,0 +1,42 @@
+warmup: true
+coslr: false
+criterions:
+  PerformanceLoss:
+    def_file: ./loss/LDAMLoss.py
+    drw: true
+    loss_params: {max_m: 0.5, s: 30}
+    optim_params: null
+    weight: 1.0
+endlr: 0.0
+last: false
+memory: {centroids: false, init_centroids: false}
+model_dir: null
+networks:
+  classifier:
+    def_file: ./models/DotProductClassifier.py
+    optim_params: {lr: 0.1, momentum: 0.9, weight_decay: 0.0002}
+    params: {dataset: ImbalanceCifar10, feat_dim: 64, log_dir: ./logs/ImbalanceCifar10/models/resnet32_ldamdrw_e200,
+      num_classes: 10, stage1_weights: false, use_norm: true}
+  feat_model:
+    def_file: ./models/resnet32_feature_cifar.py
+    fix: false
+    optim_params: {lr: 0.1, momentum: 0.9, weight_decay: 0.0002}
+    params: {dataset: ImbalanceCifar10, dropout: null, log_dir: ./logs/ImbalanceCifar10/models/resnet32_ldamdrw_e200,
+      stage1_weights: false, use_fc: false, use_selfatt: false}
+shuffle: true
+training_opt:
+  backbone: resnet32
+  batch_size: 128
+  dataset: ImbalanceCifar10
+  display_step: 10
+  feature_dim: 64
+  log_dir: ./logs/ImbalanceCifar10/models/resnet32_ldamdrw_e200
+  log_root: ./logs/ImbalanceCifar10
+  num_classes: 10
+  num_epochs: 200
+  num_workers: 4
+  open_threshold: 0.1
+  sampler: null
+  scheduler_params: {gamma: 0.01, step_size: 160, milestones: [160, 180], warmup_epochs: 5}
+  stage: resnet32_ldamdrw_e200
+  sub_dir: models

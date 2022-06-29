@@ -1,0 +1,11 @@
+h5py==2.10.0
+torchvision==0.7.0
+matplotlib==3.3.4
+numpy==1.19.2
+torch==1.6.0
+tqdm==4.59.0
+seaborn==0.11.1
+layers==0.1.5
+Pillow==8.2.0
+PyYAML==5.4.1
+scikit_learn==0.24.2
